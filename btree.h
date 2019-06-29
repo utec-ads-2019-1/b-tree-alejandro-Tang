@@ -12,23 +12,31 @@ class BTree {
     public:
         BTree(unsigned int degree) : degree(degree), root(nullptr) {};
 
-        T search(int k) { 
-            // TODO
+        bool search(int k) { 
+            return root->search(k);
         } 
 
-        bool insert(int k, T data) {
-            // TODO
+        bool insert(int k) {
+           if(!root) root = new Node<T>(degree);
+           if(root->size() == degree-1){
+                auto newRoot = new Node<T>(degree);
+                newRoot->addChild(root);
+                root = newRoot;
+                root->splitChild(0);
+           }
+           return root->insertNonFull(k);
         }
 
         bool remove(int k) {
-            // TODO
+            auto target = root->findPrevious(k);
+            if(!target->hasKey(k)) return false;
         }
 
         void print() {
             // TODO
         }
 
-        ~BTree();
+        //~BTree();
 };
 
 #endif
