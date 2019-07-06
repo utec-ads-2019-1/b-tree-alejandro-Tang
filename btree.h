@@ -28,15 +28,27 @@ class BTree {
         }
 
         bool remove(int k) {
-            auto target = root->findPrevious(k);
-            if(!target->hasKey(k)) return false;
+            if(root->size() == 1){
+                if(root->hasKey(k)){
+                    root->removeKey(k);
+                    root->mergeChildren(0, 1); //must include taking a key downwards
+                    root = root->getChild(0);
+                    return true;
+                }else if(root->childrenInDanger()){ //maybe have a parameter for this?
+                    root->mergeChildren(0, 1); //this could be a "mergeRoot()" function
+                    root->getChild(0);
+                }
+            }
+            return root->erase(k);
         }
 
         void print() {
             // TODO
         }
 
-        //~BTree();
+        ~BTree(){
+            root->chainDelete();
+        }
 };
 
 #endif

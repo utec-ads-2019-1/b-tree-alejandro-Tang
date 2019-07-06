@@ -80,6 +80,10 @@ struct Node {
             children.push_back(newChild);
         }
 
+        void insertChild(Node * newChild, int pos){
+           children.insert(keys.begin() + pos);
+        }
+
         bool operator< (const Node& otherNode) {
             if(this->lesserKey() < otherNode->lesserKey()) return true;
             return false;
@@ -95,6 +99,28 @@ struct Node {
                 sibling->insertKey(keys[j]);
             }
         }
+
+        bool removeKey(int k){
+            auto position = find(keys.begin(), keys.end(), k);
+            if(position == keys.end()) return false;
+            keys.erase(position);
+        }
+        
+        void mergeChildren(int l, int r){
+            auto leftChild = children[l];
+            auto rightChild = children[r];
+            cout << "Llave insertada: "<< keys[l] << endl; 
+            leftChild->insertKey(keys[l]);
+            leftChild->showKeys();
+            cout << "end\n";
+            rightChild->transferData(-2, rightChild->size()-1, leftChild);
+            leftChild->showKeys();
+            keys.erase(keys.begin() + l);
+            children.erase(children.begin() + r);
+        }
+        
+/*        bool childrenInDanger(){
+            if(children[0]->size() > degree/2)*/
 
         bool hasKey(int k){
             if(find(keys.begin(), keys.end(), k) == keys.end()) return false;
@@ -115,7 +141,18 @@ struct Node {
             if(children.size()) return false;
             return true;
         }
- 
+
+        void chainDelete(){
+            if(!this->isLeaf()){
+                for(auto child: children){
+                    child->chainDelete();
+                }
+            }
+            children.clear();
+            keys.clear();
+            delete this;
+        }
+
 };
 
 #endif

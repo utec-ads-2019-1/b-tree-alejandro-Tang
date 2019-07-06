@@ -8,40 +8,48 @@ using namespace std;
 int main(int argc, char *argv[]) {
     int degree = 4;
 
-    /*Node<int> myNode(degree);
-    auto otherNode = new Node<int>(degree); 
-    for(int i = 0; i < degree; i++){
-        myNode.insertKey(i);
-    }
+    auto myBTree = new BTree<int>(degree);
+    myBTree->insert(1);
+    myBTree->insert(4);
+    myBTree->insert(6);
+    myBTree->insert(8);
+    myBTree->insert(12);
+    myBTree->insert(0);
+    myBTree->insert(3);
+    myBTree->insert(14);
+    myBTree->insert(7);
+    myBTree->insert(5);
+    myBTree->insert(11);
+    myBTree->insert(10);
+    delete myBTree;
+
+    cout << "Success\n";
+
+/*    Node<int> root(degree);
+    root.insertKey(7);
+    root.insertKey(9);
+    root.insertKey(10);
+    root.showKeys();
+
+    auto child0 = new Node<int>(degree);
+    child0->insertKey(6);
+    child0->showKeys();
     
-    myNode.showKeys();
+    auto child1 = new Node<int>(degree);
+    child1->insertKey(8);
+    child1->showKeys();
+
+    root.addChild(child0);
+    root.addChild(child1);
     
-    cout << "Otro nodo\n";
-
-    myNode.transferData(degree/2, degree, otherNode);
-
-    otherNode->showKeys();
-
-    for(int i = 0; i < degree + 1; i++){
-        if(myNode.hasKey(i)) cout << "Tiene la key " << i << endl;
-        else cout << "No tiene la key " << i << endl;
-
-    }*/
-
-    BTree<int> myBTree(degree);
-    myBTree.insert(1);
-    myBTree.insert(4);
-    myBTree.insert(6);
-    myBTree.insert(8);
-    myBTree.insert(12);
-    myBTree.insert(0);
-    myBTree.insert(3);
-    myBTree.insert(14);
-    myBTree.insert(7);
-    myBTree.insert(5);
-    myBTree.insert(11);
-    myBTree.insert(10);
-
+    root.mergeChildren(0, 1);
+    cout << "Root:\n";
+    root.showKeys();
+    cout << "Child0:\n";
+    child1->showKeys();
+    cout << "Child1:\n";
+    child1->showKeys();
+*/
    /* vector<int> v;
     v.push_back(5);
     v.push_back(6);
