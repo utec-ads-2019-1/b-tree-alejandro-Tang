@@ -155,6 +155,18 @@ struct Node {
            }
        }
 
+       bool printByLevel(int currentLevel, int targetLevel) {
+            if(currentLevel == targetLevel) {
+                showKeys();
+                cout << "\t";
+                if(this->isLeaf()) return false;
+                return true;
+            }
+            for(int i = 0; i < children.size(); i++){
+                children[i]->printByLevel(currentLevel+1, targetLevel);
+            }
+        }
+
         void chainDelete(){
             if(!this->isLeaf()){
                 for(auto child: children){

@@ -46,6 +46,17 @@ class BTree {
             root->printInOrder();
         }
 
+        void printByLevel() {
+            bool thereAreStillLevels;
+            int currentTargetLevel = 0;
+            while(thereAreStillLevels){
+                cout << "Nivel " << currentTargetLevel << ":\t";
+                thereAreStillLevels = root->printByLevel(0, currentTargetLevel);
+                currentTargetLevel++;
+                cout << endl;
+            }
+        }
+
         ~BTree(){
             root->chainDelete();
         }
