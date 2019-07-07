@@ -42,8 +42,8 @@ class BTree {
             return root->erase(k);
         }
 
-        void print() {
-            // TODO
+        void printInOrder() {
+            root->printInOrder();
         }
 
         ~BTree(){

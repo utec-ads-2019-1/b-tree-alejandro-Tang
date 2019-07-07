@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
     myBTree->insert(5);
     myBTree->insert(11);
     myBTree->insert(10);
+    myBTree->printInOrder();
     delete myBTree;
 
     cout << "Success\n";

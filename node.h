@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -133,7 +134,7 @@ struct Node {
 
         void showKeys(){
             for(int i = 0; i < keys.size(); i++){
-                cout << keys[i] << endl;
+                cout << keys[i] << " ";
             }
         };
 
@@ -141,6 +142,18 @@ struct Node {
             if(children.size()) return false;
             return true;
         }
+
+       void printInOrder(){
+           if(this->isLeaf()) this->showKeys();
+           else{
+               int i = 0;
+                for(i; i < keys.size(); i++){
+                    children[i]->printInOrder();
+                    cout << keys[i] << " " ;
+                }
+                children[i]->printInOrder();
+           }
+       }
 
         void chainDelete(){
             if(!this->isLeaf()){
