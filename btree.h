@@ -27,20 +27,25 @@ class BTree {
            return root->insertNonFull(k);
         }
 
-        bool remove(int k) {
+
+        //No se llegó a implementar el remove por completo: falta implementar
+        //a nivel de nodos
+/*        bool remove(int k) {
             if(root->size() == 1){
                 if(root->hasKey(k)){
                     root->removeKey(k);
                     root->mergeChildren(0, 1); //must include taking a key downwards
                     root = root->getChild(0);
                     return true;
-                }else if(root->childrenInDanger()){ //maybe have a parameter for this?
+                }else if(root->childrenInDanger()){ //if children are on the limit of key size
                     root->mergeChildren(0, 1); //this could be a "mergeRoot()" function
                     root->getChild(0);
                 }
             }
             return root->erase(k);
         }
+        */
+
 
         void printInOrder() {
             root->printInOrder();

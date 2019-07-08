@@ -38,40 +38,5 @@ int main(int argc, char *argv[]) {
 
     cout << "Success\n";
 
-/*    Node<int> root(degree);
-    root.insertKey(7);
-    root.insertKey(9);
-    root.insertKey(10);
-    root.showKeys();
-
-    auto child0 = new Node<int>(degree);
-    child0->insertKey(6);
-    child0->showKeys();
-    
-    auto child1 = new Node<int>(degree);
-    child1->insertKey(8);
-    child1->showKeys();
-
-    root.addChild(child0);
-    root.addChild(child1);
-    
-    root.mergeChildren(0, 1);
-    cout << "Root:\n";
-    root.showKeys();
-    cout << "Child0:\n";
-    child1->showKeys();
-    cout << "Child1:\n";
-    child1->showKeys();
-*/
-   /* vector<int> v;
-    v.push_back(5);
-    v.push_back(6);
-    v.push_back(7);
-
-    v.insert(v.begin() + 0, 8);
-    v.insert(v.begin() + 1, 9);
-    v.insert(v.begin() + 3, 10);*/
-
-
     return EXIT_SUCCESS;
 }

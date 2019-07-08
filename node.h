@@ -34,7 +34,7 @@ struct Node {
             child->deleteHalf();
 
             int it = keys.size() - 1;
-            while(middle != keys[it]) it--;                 //hazard
+            while(middle != keys[it]) it--; 
             children.insert(children.begin() + it + 1, newSibling);
         }
 
@@ -44,9 +44,6 @@ struct Node {
             int it = keys.size() - 1;
             while(it >= 0 and k < keys[it]) it--;
             it++;
-
-            //if(keys[it] == k) return false;
-
             auto child = children[it];
             if(child->size() != degree - 1) return child->insertNonFull(k);
 
@@ -101,29 +98,7 @@ struct Node {
             }
         }
 
-        bool removeKey(int k){
-            auto position = find(keys.begin(), keys.end(), k);
-            if(position == keys.end()) return false;
-            keys.erase(position);
-        }
-        
-        void mergeChildren(int l, int r){
-            auto leftChild = children[l];
-            auto rightChild = children[r];
-            cout << "Llave insertada: "<< keys[l] << endl; 
-            leftChild->insertKey(keys[l]);
-            leftChild->showKeys();
-            cout << "end\n";
-            rightChild->transferData(-2, rightChild->size()-1, leftChild);
-            leftChild->showKeys();
-            keys.erase(keys.begin() + l);
-            children.erase(children.begin() + r);
-        }
-        
-/*        bool childrenInDanger(){
-            if(children[0]->size() > degree/2)*/
-
-        bool hasKey(int k){
+              bool hasKey(int k){
             if(find(keys.begin(), keys.end(), k) == keys.end()) return false;
             return true;
         }
@@ -177,6 +152,34 @@ struct Node {
             keys.clear();
             delete this;
         }
+
+        //Funcionalidades que hubiesen servido si se hubiese implementado el
+        //remove
+
+ 
+        void mergeChildren(int l, int r){
+            auto leftChild = children[l];
+            auto rightChild = children[r];
+            cout << "Llave insertada: "<< keys[l] << endl; 
+            leftChild->insertKey(keys[l]);
+            leftChild->showKeys();
+            cout << "end\n";
+            rightChild->transferData(-2, rightChild->size()-1, leftChild);
+            leftChild->showKeys();
+            keys.erase(keys.begin() + l);
+            children.erase(children.begin() + r);
+        }
+ 
+        bool removeKey(int k){
+            auto position = find(keys.begin(), keys.end(), k);
+            if(position == keys.end()) return false;
+            keys.erase(position);
+        }
+        
+/*        bool childrenInDanger(){
+            if(children[0]->size() > degree/2)*/
+
+
 
 };
 
